@@ -46,6 +46,20 @@ def cal_block_size(base_block, quant_bits):
     return base_block
 
 
+def load_data():
+    import json
+
+    data = []
+    # Open the JSONL file and process it line by line
+    with open('multi_news.jsonl', 'r') as f:
+        for line in f:
+            # Parse each line as a JSON object
+            json_obj = json.loads(line.strip())
+            data.append(json_obj)
+
+    return data
+
+
 if __name__ == "__main__":
     args = parse_args()
     batch_size = args.batch_size
@@ -124,7 +138,7 @@ if __name__ == "__main__":
     start = time.time() 
     cnt = 0 
     
-    datasets = data = load_dataset('THUDM/LongBench', "multi_news", split='test')
+    data = load_data()
     for idx, json_obj in tqdm(enumerate(data), total=len(data)):
         raw_prompt = prompt_format.format(**json_obj) + prompt_format.format(**json_obj) + prompt_format.format(**json_obj) 
         if args.prompt_length > 10000: 
