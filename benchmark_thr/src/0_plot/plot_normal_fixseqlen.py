@@ -190,7 +190,6 @@ for phase in ['prefill', 'decoding']:
     assert len(phase_data) == len(prompt_length_list)
     phase_data.clear
 
-exit(0)
 
 
 
@@ -246,12 +245,13 @@ for phase in ['prefill', 'decoding']:
 
 ##### plot
 for phase in ['prefill', 'decoding']:
-    for idx, prompt_length in enumerate([256, 512, 1024, 2048, 3072, 4000]):
-        if prompt_length != 1024: continue # FIXME
+    for idx, prompt_length in enumerate([1024]):
 
         # NOTE: plot quant normal
+        # import pdb; pdb.set_trace() 
         x_data, y_data = quant_normal_full_data[phase][idx]
         plt.figure(figsize=(4, 3), dpi=150)
+        # import pdb; pdb.set_trace() 
         for k, v in y_data.items():
             quant_name, policy_name = k.split('_')
             # print(f"{quant_name} {policy_name}")
@@ -307,5 +307,5 @@ for phase in ['prefill', 'decoding']:
         plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.grid()
         plt.savefig(f"{output_folder}/normal_phase_{phase}_promptlen_{prompt_length}{suffix}.pdf", bbox_inches='tight')
-        print(f"{output_folder}/normal_phase_{phase}_promptlen_{prompt_length}{suffix}.pdf")
+        print(f"{output_folder}/normal_phase_{phase}_promptlen_{prompt_length}{suffix}.pdf", flush=True)
         # plt.show()

@@ -7,7 +7,7 @@ for bsz in 1 2 4 8 16
 do 
     for prompt_length in 6144 
     do
-        for quant_policy in None KIVI GEAR None
+        for quant_policy in None KIVI GEAR
         do
             quant_bits=4
             if [[ ${quant_policy} == "None" ]]; then
@@ -24,7 +24,6 @@ do
             echo "------------------------ end \n"
             sleep 2
         done 
-        exit 
     done
 
 done

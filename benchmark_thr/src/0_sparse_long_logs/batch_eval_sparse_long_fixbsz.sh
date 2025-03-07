@@ -5,7 +5,7 @@ model_path=lmsys/longchat-7b-v1.5-32k
 
 for bsz in 1 
 do 
-    for prompt_length in 4096 6144 8192 10240 6144
+    for prompt_length in 4096 8192 10240
     do
         for sparse_policy in StreamingLLM H2O
         do

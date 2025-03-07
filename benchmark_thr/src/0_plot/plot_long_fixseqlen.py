@@ -48,7 +48,7 @@ def compute_detailed_thr(path, phase, prompt_length, bsz, print_info=False):
     # deal with non-existing files / empty logs
     if not os.path.exists(path):
         print(f"----- no log file ----- \n {path}")
-        import pdb; pdb.set_trace() 
+        # import pdb; pdb.set_trace() 
         return None
 
     if print_info:
@@ -190,8 +190,6 @@ for phase in ['prefill', 'decoding']:
     assert len(phase_data) == len(prompt_length_list)
     phase_data.clear
 
-exit(0)
-
 
 
 ##### parse sparse logs
@@ -246,8 +244,7 @@ for phase in ['prefill', 'decoding']:
 
 ##### plot
 for phase in ['prefill', 'decoding']:
-    for idx, prompt_length in enumerate([256, 512, 1024, 2048, 3072, 4000]):
-        if prompt_length != 1024: continue # FIXME
+    for idx, prompt_length in enumerate([6144]):
 
         # NOTE: plot quant long
         x_data, y_data = quant_long_full_data[phase][idx]
@@ -307,5 +304,5 @@ for phase in ['prefill', 'decoding']:
         plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.grid()
         plt.savefig(f"{output_folder}/long_phase_{phase}_promptlen_{prompt_length}{suffix}.pdf", bbox_inches='tight')
-        print(f"{output_folder}/long_phase_{phase}_promptlen_{prompt_length}{suffix}.pdf")
+        print(f"{output_folder}/long_phase_{phase}_promptlen_{prompt_length}{suffix}.pdf", flush=True)
         # plt.show()
