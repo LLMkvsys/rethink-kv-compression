@@ -19,6 +19,7 @@ Clone the repository and prepare environment.
   conda activate lmdeploy
   conda clean -a
   pip install --no-cache-dir -r mlsys_requirements.txt
+  cd  benchmark_thr/src
   pip install -e . 
 ```
  We also provide ``Dockerfile`` to to help you build a docker image. 
